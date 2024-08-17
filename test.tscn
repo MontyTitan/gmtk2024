@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2nuj3ltji5d8"]
+
+[ext_resource type="Script" path="res://test.gd" id="1_ctixb"]
+[ext_resource type="Texture2D" uid="uid://cs8emwpqsyevs" path="res://Mouse.png" id="1_wardw"]
+[ext_resource type="Texture2D" uid="uid://bhuvvlwh1eupt" path="res://icon.svg" id="2_2hbcn"]
+[ext_resource type="Shader" path="res://mask.gdshader" id="2_uj6a7"]
+[ext_resource type="Texture2D" uid="uid://461ts4esxpfo" path="res://circle.png" id="3_hg5md"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_28xug"]
+shader = ExtResource("2_uj6a7")
+
+[node name="ColorRect" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137064, 0.125349, 0.431001, 1)
+script = ExtResource("1_ctixb")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Open" type="Sprite2D" parent="Control"]
+position = Vector2(24, 41)
+scale = Vector2(0.40625, 0.398438)
+texture = ExtResource("1_wardw")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Control"]
+position = Vector2(16, 42)
+copy_mode = 2
+
+[node name="Mask" type="Sprite2D" parent="Control/BackBufferCopy"]
+z_index = 1
+z_as_relative = false
+material = SubResource("ShaderMaterial_28xug")
+position = Vector2(-153, 46)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_hg5md")
+
+[node name="Close" type="Sprite2D" parent="Control/BackBufferCopy"]
+z_as_relative = false
+position = Vector2(15, -8)
+texture = ExtResource("2_2hbcn")
